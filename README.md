@@ -1,4 +1,4 @@
 # minesweeper2
-new version minesweeper use bootstrap framework
+A new version minesweeper whitch used bootstrap framework
 
 http://tingchungsu.github.io/minesweeper2/
