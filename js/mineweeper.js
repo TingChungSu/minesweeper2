@@ -7,7 +7,6 @@ var gameOver = false;
 var restBomb =0;
 var timer = 0;
 var timerControler;
-tcsu_cookies.setCookie("record",999,999);
 
 $(document).ready(function(){ 
 	$(window).keydown(function(event){
@@ -244,11 +243,11 @@ function gameIsOver(isWin){
 	gameOver = true;
 	clearTimer();
 	if(isWin){
-		window.alert("You Win in "+timer+" seconds!");
 		if(tcsu_cookies.getCookie("record")=="" || timer < tcsu_cookies.getCookie("record")){
 			tcsu_cookies.setCookie("record",timer,999);
 			setRecord(tcsu_cookies.getCookie("record"));
 		}
+		window.alert("You Win in "+timer+" seconds!");
 			
 		//document.getElementById("gameOver").innerHTML = "You Win!";
 	}else{
