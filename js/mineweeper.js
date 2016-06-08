@@ -8,12 +8,6 @@ var restBomb =0;
 var timer = 0;
 var timerControler;
 
-function doCookieSetup(name, value) {
-  var expires = new Date();
-  //有效時間保存 2 天 2*24*60*60*1000
-  expires.setTime(expires.getTime() + 172800000);
-  document.cookie = name + "=" + escape(value) + ";expires=" + expires.toGMTString()
-}
 
 $(document).ready(function(){ 
 	$(window).keydown(function(event){
@@ -29,6 +23,9 @@ function startTimer(){
 }
 function setRestBombText(num){
 	document.getElementById("restBombs").innerHTML = "Rest Bomb: " + num;
+}
+function setRecord(num){
+	document.getElementById("record").innerHTML = "Best Score: " + num;
 }
 function setTimerText(num){
 	document.getElementById("timer").innerHTML = "Time: " + num;
@@ -104,6 +101,7 @@ function gameCreate(x,y){
 	blocknum = x*y;
 	restBomb = num;
 	setRestBombText(restBomb);
+	setRecord(tcsu_cookies.getCookie("record"));
 	timer = 0;
 	setTimerText(timer);
 	var tablegame = document.getElementById("gamezone");
@@ -247,6 +245,11 @@ function gameIsOver(isWin){
 	clearTimer();
 	if(isWin){
 		window.alert("You Win in "+timer+" seconds!");
+		if(timer < tcsu_cookies.getCookie("record")){
+			tcsu_cookies.setCookie("record",timer,999);
+			setRecord(tcsu_cookies.getCookie("record"));
+		}
+			
 		//document.getElementById("gameOver").innerHTML = "You Win!";
 	}else{
 		for(var i=0;i<blocknum;i++){
