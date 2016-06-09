@@ -67,6 +67,7 @@ function hideWarning(){
 }
 function setDifficulty(val){
 	difficulty = val;
+	console.log("difficulty:"+difficulty);
 	if(val == 1){
 		document.getElementById("row").value = 10;
 		document.getElementById("col").value = 10;
@@ -263,7 +264,6 @@ function gameIsOver(isWin){
 	gameOver = true;
 	clearTimer();
 	if(isWin){
-		if(max_x == max_y && max_y == num && num == 10)
 		if(tcsu_cookies.getCookie("record"+difficulty)=="" ||
 			timer < tcsu_cookies.getCookie("record"+difficulty)){
 			tcsu_cookies.setCookie("record"+difficulty,timer,999);
