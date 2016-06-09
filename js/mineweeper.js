@@ -264,9 +264,10 @@ function gameIsOver(isWin){
 	clearTimer();
 	if(isWin){
 		if(max_x == max_y && max_y == num && num == 10)
-		if(tcsu_cookies.getCookie("record"+difficulty)=="" || timer < tcsu_cookies.getCookie("record")){
+		if(tcsu_cookies.getCookie("record"+difficulty)=="" ||
+			timer < tcsu_cookies.getCookie("record"+difficulty)){
 			tcsu_cookies.setCookie("record"+difficulty,timer,999);
-			setRecord(tcsu_cookies.getCookie("record")+difficulty);
+			setRecord(tcsu_cookies.getCookie("record"+difficulty));
 		}
 		window.alert("You Win in "+timer+" seconds!");
 			
