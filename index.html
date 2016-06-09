@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta property="og:url"           content="http://tingchungsu.github.io/minesweeper2/" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Your Website Title" />
+	<meta property="og:description"   content="Your description" />
+
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +26,15 @@
 
 </head>
 <body role = "document" onselectstart="return false;" oncontextmenu="window.event.returnValue=false" >
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//https://connect.facebook.net/en_US/all.js";
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	
 	<!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -34,8 +49,21 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
+			
+			
+				
+
+			
 				<li><a onclick="start();">Start</a></li>
 				<li><a onclick="help();">About</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Difficulty <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a onclick="setDifficulty(1);">Easy</a></li>
+						<li><a onclick="setDifficulty(2);">Medium</a></li>
+						<li><a onclick="setDifficulty(3);">Hard</a></li>
+					</ul>
+				</li>
 				<!--li><a href="#">Contact</a></li-->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Setting <span class="caret"></span></a>
@@ -43,8 +71,11 @@
 						<li class="btn-default ">Height:<input type="number" value = 10 id = "row" min="5" max="30"></li>
 						<li class="btn-default ">Width :<input type="number" value = 10 id = "col" min="5" max="30"></li>
 						<li class="btn-default ">Bomb Num:<input type="number" value = 10 id = "num" min="1" max="900"></li>
-						<li class="btn-primary" onclick="start();">Start</li>
+						<li class="btn-primary" onclick="setDifficulty(0);start();">Start</li>
 					</ul>
+				</li>
+				<li>			
+					<a class="fb-xfbml-parse-ignore" onclick="tcsu_popupWeb.popCenter('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftingchungsu.github.io%2Fminesweeper2%2F&display=popup&ref=plugin&src=share_button','test',700,500);">Shared to facebook</a>
 				</li>
 			</ul>
 		</div><!--/.nav-collapse -->
@@ -69,10 +100,10 @@
 			</div>
 		</div>
 		<hr>
-		<div>
-			<table class = "GameZone" id = "gamezone">
-			</table>
-		</div>
+	</div>
+	<div>
+		<table class = "GameZone" id = "gamezone">
+		</table>
 	</div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -81,6 +112,7 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="./bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 	<script src="./js/cookie.js"></script>
+	<script src="./js/popup.js"></script>
 	<script src="./js/mineweeper.js"></script>
 	<script>start();</script>
     

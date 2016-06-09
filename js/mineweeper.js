@@ -7,6 +7,7 @@ var gameOver = false;
 var restBomb =0;
 var timer = 0;
 var timerControler;
+var difficulty = 1;
 
 $(document).ready(function(){ 
 	$(window).keydown(function(event){
@@ -62,8 +63,26 @@ function help(){
 	window.alert(strText);
 }
 function hideWarning(){
-		$("div.alert").slideUp("slow");
+	$("div.alert").slideUp("slow");
 }
+function setDifficulty(val){
+	difficulty = val;
+	if(val == 1){
+		document.getElementById("row").value = 10;
+		document.getElementById("col").value = 10;
+		document.getElementById("num").value = 10;
+	}else if(val == 2){
+		document.getElementById("row").value = 10;
+		document.getElementById("col").value = 15;
+		document.getElementById("num").value = 15;
+	}else if(val == 3){
+		document.getElementById("row").value = 10;
+		document.getElementById("col").value = 20;
+		document.getElementById("num").value = 35;
+	}
+	start();
+}
+
 function start(){
 	gameOver = false;
     console.log("starts.");
@@ -100,7 +119,8 @@ function gameCreate(x,y){
 	blocknum = x*y;
 	restBomb = num;
 	setRestBombText(restBomb);
-	setRecord(tcsu_cookies.getCookie("record"));
+	
+	setRecord(tcsu_cookies.getCookie("record"+difficulty));
 	timer = 0;
 	setTimerText(timer);
 	var tablegame = document.getElementById("gamezone");
@@ -243,9 +263,10 @@ function gameIsOver(isWin){
 	gameOver = true;
 	clearTimer();
 	if(isWin){
-		if(tcsu_cookies.getCookie("record")=="" || timer < tcsu_cookies.getCookie("record")){
-			tcsu_cookies.setCookie("record",timer,999);
-			setRecord(tcsu_cookies.getCookie("record"));
+		if(max_x == max_y && max_y == num && num == 10)
+		if(tcsu_cookies.getCookie("record"+difficulty)=="" || timer < tcsu_cookies.getCookie("record")){
+			tcsu_cookies.setCookie("record"+difficulty,timer,999);
+			setRecord(tcsu_cookies.getCookie("record")+difficulty);
 		}
 		window.alert("You Win in "+timer+" seconds!");
 			
